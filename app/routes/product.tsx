@@ -18,6 +18,13 @@ export async function loader(args: Route.LoaderArgs) {
   return { product };
 }
 
+// Http headers for caching
+export function headers() {
+  return {
+    "Cache-Control": "max-age=300, s-maxage=3600",
+  };
+}
+
 export async function action(args: Route.ActionArgs) {
   const { params, request } = args;
   const productId = params.id;
@@ -35,21 +42,14 @@ export async function action(args: Route.ActionArgs) {
   }
 }
 
-export function meta(args: Route.MetaArgs) {
-  const { product } = args.data ?? {};
-
-  return [
-    {
-      title: product?.title,
-    },
-    { description: "" },
-  ];
-}
-
 export default function Product(props: Route.ComponentProps) {
   const { product } = props.loaderData;
   return (
     <div className="container mx-auto p-4">
+      {/* Meta tags for SEO */}
+      <title>{product.title}</title>
+      <meta property="og:title" content={product.title} />
+
       <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
       <p>{product.body}</p>
       <div className="my-4">

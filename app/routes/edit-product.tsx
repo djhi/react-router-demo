@@ -1,4 +1,4 @@
-import { Form, Link, redirect } from "react-router";
+import { Form, redirect } from "react-router";
 import type { Route } from "./+types/product";
 
 export async function loader(args: Route.LoaderArgs) {
