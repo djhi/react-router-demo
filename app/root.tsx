@@ -9,6 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { Footer } from "~/ui/Footer";
+import { Header } from "./ui/Header";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -32,10 +34,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+      <body className="flex flex-col min-h-screen">
+        <Header />
+        <div className="flex-1">
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+        </div>
+        <Footer />
       </body>
     </html>
   );

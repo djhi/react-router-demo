@@ -20,6 +20,7 @@ export async function loader(args: Route.LoaderArgs) {
 
 export async function action(args: Route.ActionArgs) {
   const { params, request } = args;
+
   const productId = params.id;
   if (request.method === "PATCH") {
     const formData = await request.formData();
